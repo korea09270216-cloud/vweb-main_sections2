@@ -96,7 +96,7 @@ a { color: inherit; text-decoration: none; }
 .vr01_pgw4 { z-index: 4; transform: rotate(3deg) translateY(.6vw); }
 .vr01_pgw5 { z-index: 2; transform: rotate(6deg) translateY(1.6vw); }
 
-.vr01_pg { position: relative; display: flex; flex-direction: column; width: 100%; aspect-ratio: 1 / 1.414; padding: 1.5em 1.5em 1.2em; border-radius: .8em; background: #fff; box-shadow: 0 1.2em 3em rgba(50, 53, 205, .16), 0 0 0 1px rgba(20, 22, 80, .06); font-size: .732vw; line-height: 1.4; letter-spacing: -0.02em; color: #222; overflow: hidden; }
+.vr01_pg { position: relative; display: flex; flex-direction: column; width: 100%; aspect-ratio: 1 / 1.1; padding: 1.5em 1.5em 1.3em; border-radius: .8em; background: #fff; box-shadow: 0 1.2em 3em rgba(50, 53, 205, .16), 0 0 0 1px rgba(20, 22, 80, .06); font-size: .732vw; line-height: 1.4; letter-spacing: -0.02em; color: #222; overflow: hidden; }
 .pg_no { margin-top: 0; font-family: var(--f-en); font-weight: 800; font-size: 1.5em; line-height: 1; color: var(--c-pri); }
 .pg_h { margin-top: .3em; font-size: 1.28em; font-weight: 800; line-height: 1.3; letter-spacing: -0.04em; }
 .pg_blk { margin-top: .9em; padding: 1.05em 1em 1.05em 1.1em; border-radius: .8em; background: var(--c-lav2); }
@@ -112,12 +112,12 @@ a { color: inherit; text-decoration: none; }
 .pg_big_s b { margin: 0; font-family: var(--f-ko); font-size: 1.05em; letter-spacing: -0.03em; }
 .pg_big_s b + b::before { content: "·"; margin-right: .45em; color: var(--c-pri-l); }
 .pg_ft { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: .8em; font-size: .64em; color: #9a9ab0; }
-.pg_eff { margin-top: 1em; display: grid; gap: .7em; }
-.pg_eff li { display: flex; align-items: center; gap: .8em; padding: 1em; border-radius: .8em; background: var(--c-lav2); }
+.pg_eff { margin-top: .8em; display: grid; gap: .55em; }
+.pg_eff li { display: flex; align-items: center; gap: .8em; padding: .75em .95em; border-radius: .8em; background: var(--c-lav2); }
 .pg_eff li i { flex: none; width: 2em; height: 2em; border-radius: 50%; background: var(--c-green); color: #fff; display: flex; align-items: center; justify-content: center; }
 .pg_eff li i svg { width: 1.1em; }
 .pg_eff li b { font-size: .98em; font-weight: 700; line-height: 1.35; letter-spacing: -0.03em; }
-.pg_fn { margin-top: auto; padding-top: .9em; font-size: .64em; line-height: 1.5; color: #9a9ab0; }
+.pg_fn { margin-top: auto; padding-top: .6em; font-size: .64em; line-height: 1.5; color: #9a9ab0; }
 
 
 
@@ -126,7 +126,7 @@ a { color: inherit; text-decoration: none; }
 
 /* 표지 */
 .vr01_pg1 { background: linear-gradient(165deg, #3a3dd8 0%, #25289f 100%); color: #fff; box-shadow: 0 1.2em 3em rgba(50, 53, 205, .35); }
-.pg_cover { margin-top: 5em; }
+.pg_cover { margin-top: 2.4em; }
 .pg_cv_name { display: inline-block; padding: .2em .8em; border-radius: 99px; background: rgba(255, 255, 255, .16); font-size: .78em; font-weight: 700; }
 .pg_cv_tit { margin-top: .7em; font-size: 2.3em; font-weight: 800; line-height: 1.2; letter-spacing: -0.045em; }
 .pg_chips { margin-top: auto; display: grid; gap: .4em; }
