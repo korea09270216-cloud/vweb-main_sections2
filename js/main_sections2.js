@@ -116,8 +116,7 @@ window.addEventListener("load", function () {
       revealAt(".vr01_pages", function (t) {
         t.from(".vr01_pg", { opacity: 0, yPercent: 30, stagger: 0.1 }, "< 0%");
         $$(".vr01_pg [data-to]").forEach(function (el, i) { countUp(t, el, i ? "< 0%" : "< 40%"); });
-        t.from(".vr01_pg .pg_bar", { scaleX: 0, duration: 0.8, stagger: 0.08 }, "< 0%")
-          .from(".vr01_pg4 .pg_eff li i", { scale: 0.4, opacity: 0, duration: 0.7, ease: "back.out(2)", stagger: 0.12 }, "< 0%");
+        t.from(".vr01_pg4 .pg_eff li i", { scale: 0.4, opacity: 0, duration: 0.7, ease: "back.out(2)", stagger: 0.12 }, "< 0%");
       }, "top 80%");
 
       revealAt(".vr01_meta", function (t) {
