@@ -1,0 +1,123 @@
+@charset "utf-8";
+/* =========================================================
+   모바일 (≤599px, 390 기준 vw) — 공통 + 01 V REPORT. + 02 V WRITE.
+   · 목업은 컨테이너 font-size 를 vw 로 두고 내부는 em (PC 와 같은 마크업)
+   ========================================================= */
+@media (max-width: 599px) {
+  .pc_br { display: none; }
+  .mo_br { display: inline; }
+
+  .sec_head { padding: 0 5.128vw; }
+  .sec_en { font-size: 9.231vw; }
+  .sec_tit { margin-top: 4.103vw; font-size: 6.667vw; }
+  .sec_desc { margin-top: 3.59vw; font-size: 3.846vw; }
+
+  /* 데모 상단바 / 커버 / 푸터 */
+  .dh { height: 14.359vw; padding: 0 5.128vw; }
+  .dh_logo svg { width: 7.179vw; }
+  .dh_logo b { font-size: 5.128vw; }
+  .dh_label, .dh_nav { display: none; }
+  .dh_plan { margin-left: auto; padding: 2.051vw 3.846vw; font-size: 3.333vw; }
+  .cv { padding: 30.769vw 5.128vw 15.385vw; }
+  .cv_badge { padding: 1.538vw 3.59vw; font-size: 2.821vw; }
+  .cv_tit { margin-top: 5.128vw; font-size: 8.718vw; }
+  .cv_desc { margin-top: 4.103vw; font-size: 3.846vw; }
+  .cv_list { width: 100%; margin-top: 10.256vw; grid-template-columns: 1fr; gap: 2.051vw; }
+  .cv_list a { display: grid; grid-template-columns: 8.205vw 1fr; align-items: center; padding: 4.103vw 4.615vw; border-radius: 4.103vw; }
+  .cv_list span { grid-row: span 2; font-size: 3.846vw; }
+  .cv_list b { margin-top: 0; font-size: 4.103vw; }
+  .cv_list i { margin-top: .769vw; font-size: 3.077vw; }
+  .cv_scroll { margin-top: 10.256vw; font-size: 2.564vw; }
+  .cv_scroll i { height: 10.256vw; margin-top: 2.564vw; }
+  .df { padding: 6.154vw 5.128vw; font-size: 2.821vw; line-height: 1.6; }
+
+
+  /* =======================================================
+     01 V REPORT.
+     ======================================================= */
+  .vr01 { padding: 17.949vw 0 15.385vw; }
+
+  .vr01_flow { width: auto; margin: 7.692vw 5.128vw 0; flex-direction: column; align-items: stretch; }
+  .vr01_flow > li:not(.vr01_arw) { gap: 3.846vw; padding: 4.103vw 4.615vw; border-radius: 4.103vw; }
+  .vr01_fn { font-size: 4.359vw; }
+  .vr01_flow p b { font-size: 4.103vw; }
+  .vr01_flow p span { margin-top: .769vw; font-size: 3.077vw; }
+  .vr01_flow > li > em { top: -2.564vw; right: 4.103vw; padding: 1vw 3vw; font-size: 2.821vw; }
+  .vr01_arw { width: 100%; height: 8.205vw; display: flex; align-items: center; justify-content: center; }
+  .vr01_arw svg { width: 6.41vw; margin: 0; transform: rotate(90deg); }
+
+  .vr01_stage { margin-top: 8.974vw; }
+  .vr01_pages { justify-content: flex-start; align-items: stretch; gap: 3.846vw; padding: 3.846vw 15.897vw 5.128vw; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .vr01_pages::-webkit-scrollbar { display: none; }
+  .vr01_pgw1, .vr01_pgw2, .vr01_pgw3, .vr01_pgw4 { width: 68.205vw; margin-left: 0; transform: none; scroll-snap-align: center; }
+  .vr01_pg { font-size: 2.9vw; }
+  .vr01_dots { display: flex; justify-content: center; gap: 2.051vw; }
+  .vr01_dots li { width: 2.051vw; height: 2.051vw; border-radius: 50%; background: var(--c-lav); transition: background .3s; }
+  .vr01_dots li.on { background: var(--c-pri); }
+
+  .vr01_meta { margin: 5.128vw 5.128vw 0; flex-wrap: wrap; gap: 2.051vw; }
+  .vr01_meta li { padding: 2.051vw 3.846vw; font-size: 3.333vw; }
+
+  .vr01_cards_tt { margin-top: 15.385vw; font-size: 4.872vw; }
+  .vr01_cards { width: auto; margin: 5.128vw 5.128vw 0; grid-template-columns: 1fr; gap: 2.564vw; }
+  .vr01_card { display: grid; grid-template-columns: 12.308vw 1fr; column-gap: 4.103vw; align-items: center; padding: 4.615vw 5.128vw; border-radius: 4.103vw; }
+  .vr01_ic { grid-row: span 2; width: 12.308vw; height: 12.308vw; }
+  .vr01_ic svg { width: 6.154vw; }
+  .vr01_word { margin-top: 0; font-size: 4.872vw; }
+  .vr01_word small { display: inline-block; margin: 0 0 0 1.795vw; font-size: 3.077vw; }
+  .vr01_line { margin-top: 1.282vw; font-size: 3.59vw; }
+  .vr01_line br { display: none; }
+
+  .vr01_end { margin-top: 15.385vw; font-size: 6.667vw; }
+  .vr01_note { width: auto; margin: 5.128vw 5.128vw 0; font-size: 3.077vw; }
+
+
+  /* =======================================================
+     02 V WRITE.
+     ======================================================= */
+  .vr02 { padding: 17.949vw 0 17.949vw; }
+  .vr02::before { top: 44vw; width: 200vw; height: 120vw; }
+
+  .vr02_demo { width: 90vw; margin: 8.974vw auto 0; font-size: 3.6vw; }
+  .vr02_bar { height: 2.9em; gap: .5em; padding: 0 .8em; }
+  .vr02_url { display: none; }
+  .vr02_page { height: 28.2em; }
+  .vr02_nav { padding: 0 1.8em; }
+  .vr02_nav span i { margin-left: 1.2em; }
+  .vr02_deco { right: 1.2em; top: 4.3em; width: 8.5em; }
+  .vr02_hero { left: 1.8em; right: 1.8em; top: 14.2em; }
+  .vr02_h { font-size: 1.5em; white-space: normal; }
+  .vr02_sub { margin-top: 1.1em; font-size: .9em; }
+  .vr02_cta { margin-top: 1.7em; }
+  .vr02_tb { left: 0; }
+  .vr02_pop.m-res { width: 24em; }
+  .vr02_save { right: .9em; bottom: .9em; }
+
+  .vr02_modes_tt { margin-top: 8.974vw; gap: 1.5vw; font-size: 3.59vw; }
+  .vr02_modes_tt svg { width: 4.615vw; }
+  .vr02_modes { width: auto; margin: 3.077vw 5.128vw 0; grid-template-columns: 1fr; gap: 2.564vw; }
+  .vr02_mode { display: grid; grid-template-columns: 9.231vw 1fr; align-items: center; padding: 3.846vw 4.615vw; border-radius: 3.846vw; }
+  .vr02_mn { grid-row: span 2; font-size: 3.59vw; }
+  .vr02_mode b { margin-top: 0; font-size: 4.615vw; }
+  .vr02_mode > span:last-child { margin-top: .769vw; font-size: 3.077vw; }
+
+  .vr02_pts { width: 72vw; margin: 6.154vw auto 0; flex-direction: column; align-items: flex-start; gap: 3.077vw; }
+  .vr02_pts li { gap: 2.564vw; font-size: 3.59vw; }
+  .vr02_pts svg { width: 4.615vw; }
+
+  .vr02_tier { width: auto; margin: 17.949vw 5.128vw 0; }
+  .vr02_tier_tt { font-size: 6.154vw; }
+  .vr02_tier_sub { margin-top: 2.051vw; font-size: 3.59vw; }
+  .vr02_steps { margin-top: 7.692vw; flex-direction: column; align-items: stretch; gap: 2.564vw; }
+  .vr02_step { padding: 5.128vw 5.385vw 5.641vw; border-radius: 4.103vw; }
+  .vr02_step1, .vr02_step2, .vr02_step3 { min-height: 0; }
+  .vr02_step2 { margin-left: 5.128vw; }
+  .vr02_step3 { margin-left: 10.256vw; box-shadow: 0 3.846vw 8.205vw rgba(124, 92, 255, .35); }
+  .vr02_sn { font-size: 3.077vw; }
+  .vr02_step_k { margin-top: 3.077vw; padding: 1vw 3vw; font-size: 3.077vw; }
+  .vr02_step_t { margin-top: 2.564vw; font-size: 6.154vw; }
+  .vr02_step_d { margin-top: 2vw; font-size: 3.59vw; }
+  .vr02_note { width: auto; margin: 5.128vw 0 0; font-size: 3.077vw; }
+
+  .vr02_end { margin-top: 17.949vw; font-size: 6.667vw; }
+}
