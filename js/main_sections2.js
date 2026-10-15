@@ -396,7 +396,100 @@ window.addEventListener("load", function () {
     });
   }
 
+  /* =========================================================
+     01 — 리포트 미리보기 (PDF 를 내려받지 않고 화면에서 열람)
+     · PDF.js 를 처음 열 때만 불러와서 쪽마다 canvas 로 그린다 (모바일 · 안드로이드 크롬 포함 어디서나 동일)
+     · 안 열리면 «새 탭에서 열기» (브라우저 PDF 뷰어) 로 열 수 있다
+     ========================================================= */
+  function vr01Preview() {
+    const btn = $(".vr01_prev");
+    const modal = $("#vr01Modal");
+    if (!btn || !modal) return;
+    const pagesEl = $(".vr01_modal_pages", modal);
+    const loadEl = $(".vr01_modal_load", modal);
+    const body = $(".vr01_modal_body", modal);
+    const closeBtn = $(".vr01_modal_x", modal);
+    const PDF_URL = btn.dataset.pdf;
+    const LIB = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js";
+    const WORKER = "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+    let rendered = false, rendering = false, lastFocus = null, closeTimer = null;
+
+    function loadScript(src) {
+      return new Promise(function (ok, fail) {
+        const s = document.createElement("script");
+        s.src = src; s.onload = ok; s.onerror = fail;
+        document.head.appendChild(s);
+      });
+    }
+
+    async function renderPdf() {
+      if (rendered || rendering) return;
+      rendering = true;
+      loadEl.textContent = "리포트를 불러오는 중입니다…";
+      loadEl.classList.remove("is-done");
+      try {
+        if (!window.pdfjsLib) await loadScript(LIB);
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER;
+        const pdf = await window.pdfjsLib.getDocument({ url: PDF_URL }).promise;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const base = page.getViewport({ scale: 1 });
+          const width = pagesEl.clientWidth || body.clientWidth;
+          const vp = page.getViewport({ scale: (width / base.width) * dpr });
+          const wrap = document.createElement("div");
+          wrap.className = "vr01_modal_pg";
+          const cv = document.createElement("canvas");
+          cv.width = Math.floor(vp.width); cv.height = Math.floor(vp.height);
+          cv.setAttribute("role", "img");
+          cv.setAttribute("aria-label", "AI 가시성 리포트 " + i + "쪽");
+          wrap.appendChild(cv);
+          pagesEl.appendChild(wrap);
+          await page.render({ canvasContext: cv.getContext("2d", { willReadFrequently: true }), viewport: vp }).promise;
+          if (i === 1) loadEl.classList.add("is-done");
+        }
+        rendered = true;
+      } catch (e) {
+        pagesEl.textContent = "";
+        loadEl.classList.remove("is-done");
+        loadEl.textContent = "미리보기를 불러오지 못했습니다. 위의 ‘새 탭에서 열기’로 확인해 주세요.";
+      }
+      rendering = false;
+    }
+
+    function open() {
+      clearTimeout(closeTimer);
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      docEl.classList.add("vr01-lock");
+      body.scrollTop = 0;
+      requestAnimationFrame(function () { modal.classList.add("is-open"); });
+      closeBtn.focus({ preventScroll: true });
+      renderPdf();
+    }
+    function close() {
+      modal.classList.remove("is-open");
+      docEl.classList.remove("vr01-lock");
+      closeTimer = setTimeout(function () { modal.hidden = true; }, REDUCE ? 0 : 320);
+      if (lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+    }
+
+    btn.addEventListener("click", open);
+    modal.addEventListener("click", function (e) { if (e.target.closest("[data-close]")) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (modal.hidden) return;
+      if (e.key === "Escape") { e.preventDefault(); close(); return; }
+      if (e.key === "Tab") {                               // 모달 안에서만 포커스 이동
+        const f = $$("a[href], button", modal);
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+  }
+
   vr01();
+  vr01Preview();
   vr02();
 
   /* 데모 상단바 — 현재 섹션 */

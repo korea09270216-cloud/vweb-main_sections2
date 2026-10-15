@@ -18,7 +18,8 @@ plan.html             기획서
 css/style.css         PC (1920 기준 vw) — 공통 + 01 + 02
 css/mobile_style.css  모바일 (≤599px, 390 기준 vw)
 css/plan.css          기획서 스타일
-js/main_sections2.js  GSAP 3.13 + ScrollTrigger (공통 헬퍼 · 01 · 02 시연)
+js/main_sections2.js  GSAP 3.13 + ScrollTrigger (공통 헬퍼 · 01 · 01 미리보기 · 02 시연)
+pdf/                  01 미리보기에서 보여 주는 PDF (딩딩파파 실제 리포트)
 ```
 
 ## 실제 메인에 붙일 때
@@ -26,8 +27,9 @@ js/main_sections2.js  GSAP 3.13 + ScrollTrigger (공통 헬퍼 · 01 · 02 시�
 - 섹션 클래스는 `vr01` · `vr02` 접두어라 기존 `con2`~`con9`, 다른 시안 `vs01`~`vs05` · `va01`~`va02`와 겹치지 않습니다.
 - `.dh`(상단바) · `.cv`(커버) · `.df`(하단 안내)는 데모용이라 옮기지 않습니다.
 - 핀을 쓰지 않아 ScrollToPlugin은 필요 없습니다. 메인의 GSAP(3.11.4) · ScrollTrigger(3.6.0) 버전이 서로 달라서 3.13.0으로 통일하기를 권장합니다.
+- 01의 「미리보기」: PC는 호버 시 블러 + 버튼, 터치는 버튼 상시 노출. 팝업은 PDF.js(CDN, 처음 열 때만 로드)로 쪽마다 그려 내려받기 없이 열람하고, 「새 탭에서 열기」로 브라우저 PDF 뷰어도 열 수 있습니다. 다른 리포트로 바꾸려면 `pdf/` 의 파일과 `index.html` 의 두 경로를 바꿉니다.
 - 02의 「이용 안내」 단계 문구(호스팅 기본 단계 · 수정모드 제공 단계 이상)는 실제 호스팅 단계 이름이 정해지면 교체합니다. 비용 방식도 정해지면 안내 문구만 바꾸면 됩니다.
 - 02 시연의 예시 문구는 `js/main_sections2.js` 상단의 `MODES` 에서 바꿀 수 있습니다.
 - AI 문구 추천은 AI 사용량에 따라 비용이 발생하는 선택 옵션이라, 카피에서 "무료 · 기본 제공"으로 쓰지 않습니다.
-- 화면 속 브랜드(모노브루) · 리포트 속 수치 · 예시 문구는 모두 설명용 예시입니다.
+- 화면 속 브랜드(모노브루) · 리포트 목업 속 수치 · 예시 문구는 모두 설명용 예시입니다. 단, 「미리보기」로 열리는 PDF는 딩딩파파 홈페이지의 실제 리포트이며 이 공개 레포에 포함되어 있습니다.
 - 다른 시안: https://korea09270216-cloud.github.io/vweb-ai-admin-sections/ · https://korea09270216-cloud.github.io/vweb-main-sections/

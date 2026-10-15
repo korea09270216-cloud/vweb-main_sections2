@@ -55,6 +55,22 @@
   .vr01_dots li { width: 2.051vw; height: 2.051vw; border-radius: 50%; background: var(--c-lav); transition: background .3s; }
   .vr01_dots li.on { background: var(--c-pri); }
 
+  .vr01_prev { gap: 2.564vw; margin: 4.103vw auto 0; padding: 2.821vw 6.154vw; }
+  .vr01_prev svg { width: 5.641vw; }
+  .vr01_prev b { font-size: 4.103vw; }
+  .vr01_prev small { font-size: 3.077vw; }
+
+  .vr01_modal_box { width: 94vw; height: 86vh; border-radius: 3.846vw; }
+  .vr01_modal_hd { gap: 2.564vw; padding: 3.077vw 3.077vw 3.077vw 4.359vw; }
+  .vr01_modal_hd p { flex-direction: column; align-items: flex-start; gap: .513vw; }
+  .vr01_modal_hd b { font-size: 4.103vw; }
+  .vr01_modal_hd span { font-size: 2.821vw; }
+  .vr01_modal_open { padding: 2.051vw 3.333vw; font-size: 3.077vw; }
+  .vr01_modal_x { width: 9.231vw; height: 9.231vw; }
+  .vr01_modal_body { padding: 3.077vw; }
+  .vr01_modal_load { padding: 22vw 0; font-size: 3.59vw; }
+  .vr01_modal_pg { margin-bottom: 3.077vw; border-radius: 1.538vw; }
+
   .vr01_meta { margin: 5.128vw 5.128vw 0; flex-wrap: wrap; gap: 2.051vw; }
   .vr01_meta li { padding: 2.051vw 3.846vw; font-size: 3.333vw; }
 
