@@ -18,24 +18,13 @@
   .dh_logo b { font-size: 5.128vw; }
   .dh_label, .dh_nav { display: none; }
   .dh_plan { margin-left: auto; padding: 2.051vw 3.846vw; font-size: 3.333vw; }
-  .cv { padding: 30.769vw 5.128vw 15.385vw; }
-  .cv_badge { padding: 1.538vw 3.59vw; font-size: 2.821vw; }
-  .cv_tit { margin-top: 5.128vw; font-size: 8.718vw; }
-  .cv_desc { margin-top: 4.103vw; font-size: 3.846vw; }
-  .cv_list { width: 100%; margin-top: 10.256vw; grid-template-columns: 1fr; gap: 2.051vw; }
-  .cv_list a { display: grid; grid-template-columns: 8.205vw 1fr; align-items: center; padding: 4.103vw 4.615vw; border-radius: 4.103vw; }
-  .cv_list span { grid-row: span 2; font-size: 3.846vw; }
-  .cv_list b { margin-top: 0; font-size: 4.103vw; }
-  .cv_list i { margin-top: .769vw; font-size: 3.077vw; }
-  .cv_scroll { margin-top: 10.256vw; font-size: 2.564vw; }
-  .cv_scroll i { height: 10.256vw; margin-top: 2.564vw; }
   .df { padding: 6.154vw 5.128vw; font-size: 2.821vw; line-height: 1.6; }
 
 
   /* =======================================================
      01 V REPORT.
      ======================================================= */
-  .vr01 { padding: 17.949vw 0 15.385vw; }
+  .vr01 { padding: 23.077vw 0 15.385vw; }
 
   .vr01_flow { width: auto; margin: 7.692vw 5.128vw 0; flex-direction: column; align-items: stretch; }
   .vr01_flow > li:not(.vr01_arw) { gap: 3.846vw; padding: 4.103vw 4.615vw; border-radius: 4.103vw; }
