@@ -38,7 +38,7 @@
   .vr01_stage { margin-top: 8.974vw; }
   .vr01_pages { justify-content: flex-start; align-items: stretch; gap: 3.846vw; padding: 3.846vw 15.897vw 5.128vw; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
   .vr01_pages::-webkit-scrollbar { display: none; }
-  .vr01_pgw1, .vr01_pgw2, .vr01_pgw3, .vr01_pgw4 { width: 68.205vw; margin-left: 0; transform: none; scroll-snap-align: center; }
+  .vr01_pgw1, .vr01_pgw2, .vr01_pgw3, .vr01_pgw4, .vr01_pgw5 { width: 68.205vw; margin-left: 0; transform: none; scroll-snap-align: center; }
   .vr01_pg { font-size: 2.9vw; }
   .vr01_dots { display: flex; justify-content: center; gap: 2.051vw; }
   .vr01_dots li { width: 2.051vw; height: 2.051vw; border-radius: 50%; background: var(--c-lav); transition: background .3s; }
