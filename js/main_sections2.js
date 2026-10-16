@@ -66,29 +66,6 @@ window.addEventListener("load", function () {
     return out.filter(function (s) { return s.textContent.trim(); });
   }
 
-  // 카운트업 — 자릿수에 맞춰 스냅 (gsap.md §2-1 (4))
-  function countStep(t) {
-    t = Math.abs(t);
-    if (t >= 1e7) return 10000;
-    if (t >= 1e6) return 1000;
-    if (t >= 1e5) return 500;
-    if (t >= 1e4) return 100;
-    if (t >= 1e3) return 10;
-    if (t >= 200) return 5;
-    return 1;
-  }
-  function countUp(t, el, pos) {
-    const to = +el.dataset.to;
-    const step = countStep(to);
-    const o = { v: 0 };
-    el.textContent = "0";
-    t.to(o, {
-      v: to, duration: 1.4, ease: "expo.inOut",
-      onUpdate: function () { el.textContent = (Math.round(o.v / step) * step).toLocaleString(); },
-      onComplete: function () { el.textContent = to.toLocaleString(); },
-    }, pos);
-  }
-
   // 섹션 헤드 공통 (영문 타이틀 → 국문 타이틀 줄 스플릿 → 설명)
   function headReveal(sec) {
     const lines = splitLines(sec + " .sec_tit");
@@ -112,21 +89,22 @@ window.addEventListener("load", function () {
           .from(".vr01_arw", { opacity: 0, xPercent: -30, stagger: 0.12, duration: 0.8 }, "< 20%");
       }, "top 85%");
 
-      // 리포트 4쪽: 무대(페이지) → 숫자 카운트 → 장식(막대 · 체크)
+      // 리포트 5장: 가운데 표지에서 바깥쪽으로 퍼지듯 (화면에 보이는 왼쪽→오른쪽 순서 기준)
       revealAt(".vr01_pages", function (t) {
-        t.from(".vr01_pg", { opacity: 0, yPercent: 30, stagger: 0.1 }, "< 0%");
-        $$(".vr01_pg [data-to]").forEach(function (el, i) { countUp(t, el, i ? "< 0%" : "< 40%"); });
-        t.from(".vr01_pg4 .pg_eff li i", { scale: 0.4, opacity: 0, duration: 0.7, ease: "back.out(2)", stagger: 0.12 }, "< 0%");
+        const seen = [".vr01_pgb", ".vr01_pg2", ".vr01_pg1", ".vr01_pg3", ".vr01_pg4"].map(function (s) { return $(s); });
+        t.from(seen, { opacity: 0, yPercent: 30, stagger: { each: 0.1, from: "center" } }, "< 0%");
       }, "top 80%");
 
       revealAt(".vr01_meta", function (t) {
         t.from(".vr01_meta li", { opacity: 0, yPercent: 30, stagger: 0.08 }, "< 0%");
       }, "top 90%");
 
+      /* 카드 영역은 index.html 에서 주석 처리 중 — 되살릴 때 아래도 함께 풀기
       revealAt(".vr01_cards_tt", function (t) { t.from(".vr01_cards_tt", { opacity: 0, yPercent: 30 }, "< 0%"); }, "top 88%");
       revealAt(".vr01_cards", function (t) {
         t.from(".vr01_card", { opacity: 0, yPercent: 30, stagger: 0.12 }, "< 0%");
       }, "top 86%");
+      */
 
       revealAt(".vr01_end", function (t) {
         t.from(".vr01_end_a", { opacity: 0, yPercent: 30 }, "< 0%")
@@ -136,9 +114,6 @@ window.addEventListener("load", function () {
     });
 
     mm.add(MO, function () {
-      // 모바일은 카운트업 생략 (옆으로 넘겨야 보이는 쪽이라 화면 밖에서 끝나 버림)
-      $$(".vr01 [data-to]").forEach(function (el) { el.textContent = (+el.dataset.to).toLocaleString(); });
-
       revealEach(".vr01_flow > li:not(.vr01_arw)", { opacity: 0, yPercent: 30 }, "top 90%");
       revealEach(".vr01_arw", { opacity: 0 }, "top 94%");
       revealAt(".vr01_pages", function (t) {
@@ -147,8 +122,10 @@ window.addEventListener("load", function () {
       revealAt(".vr01_meta", function (t) {
         t.from(".vr01_meta li", { opacity: 0, yPercent: 30, stagger: 0.08 }, "< 0%");
       }, "top 92%");
+      /* 카드 영역은 index.html 에서 주석 처리 중 — 되살릴 때 아래도 함께 풀기
       revealAt(".vr01_cards_tt", function (t) { t.from(".vr01_cards_tt", { opacity: 0, yPercent: 30 }, "< 0%"); }, "top 90%");
       revealEach(".vr01_card", { opacity: 0, yPercent: 30 }, "top 90%");
+      */
       revealAt(".vr01_end", function (t) {
         t.from(".vr01_end_a", { opacity: 0, yPercent: 30 }, "< 0%")
           .from(".vr01_end_b", { opacity: 0, yPercent: 30 }, "< 30%");
@@ -167,6 +144,23 @@ window.addEventListener("load", function () {
       strip.addEventListener("scroll", sync, { passive: true });
       sync();
       return function () { strip.removeEventListener("scroll", sync); };
+    });
+  }
+
+  // 칩의 강조(.pt)가 신호등처럼 차례로 돈다 — 화면에 보일 때만, 모션 줄이기면 그대로 둔다
+  function vr01Chips() {
+    const chips = $$(".vr01_meta li");
+    if (chips.length < 2 || REDUCE) return;
+    let now = Math.max(0, chips.findIndex(function (c) { return c.classList.contains("pt"); }));
+    let timer = null;
+    function step() {
+      chips[now].classList.remove("pt");
+      now = (now + 1) % chips.length;
+      chips[now].classList.add("pt");
+    }
+    ScrollTrigger.create({
+      trigger: ".vr01_meta", start: "top 100%", end: "bottom 0%",
+      onToggle: function (self) { clearInterval(timer); if (self.isActive) timer = setInterval(step, 1800); },
     });
   }
 
@@ -488,6 +482,7 @@ window.addEventListener("load", function () {
   }
 
   vr01();
+  vr01Chips();
   vr01Preview();
   vr02();
 
